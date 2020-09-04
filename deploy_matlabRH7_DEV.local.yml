@@ -1,0 +1,99 @@
+- hosts: research_environment
+  vars:
+    custom_repo: true
+    deploy_iptables: true
+#   envir: PROD
+    envir: DEV.local
+  vars_files:
+     - ~/RHACCOUNT
+  become: yes
+  become_method: sudo
+
+  pre_tasks:
+    - debug:
+#       msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
+        msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
+    - name: register RHEL7.5
+      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach --force"
+#     when: _uid != "" and _pwd != ""
+#     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
+    - name: register RHEL7 repos necessary for Chrome (optional, extras)
+      command: "/usr/bin/subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms"
+    - name: register RHEL7 RHSCL Repo
+      shell: "/usr/bin/subscription-manager repos --enable=rhel-server-rhscl-7-rpms"
+    - name: register RHEL7 DevTools
+      shell: "/usr/bin/subscription-manager repos --enable=rhel-7-server-devtools-rpms"
+    - name: list RHEL enabled repos
+      shell: "/usr/bin/subscription-manager repos --list-enabled"
+      register: enabled_repos
+    - debug:
+        msg: "RHEL Enabled Repos: {{ enabled_repos }}"
+
+  tasks:
+#   - name: Install Development Tools
+#     yum:
+#       name: "@Development Tools"
+#       state: present
+#     shell:  yum groupinstall "Development Tools" -y
+#   - name: Install X Windows
+#     yum:
+#       name: "@X Window System"
+#       state: present 
+#   - name: Install wget
+#     yum:
+#       name: wget
+#       state: present
+#   - name: Install Latest EPEL
+#     shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm
+#   - name: Install epel
+#     shell:  yum -y localinstall /tmp/epel*rpm
+
+    - name: Add jenkins repo
+      shell: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+    - name: Import Key
+      shell: rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+    - name: Install Jenkins and JAVA
+      yum:
+        name: {{ item }}
+        state: present:
+      with_items:
+        - java-1.8.0-openjdk
+        - jenkins
+    - name: Start Jenkins
+      shell: systemctl start jenkins
+
+    - name: System Enable jenkins
+      shell: systemctl enable jenkins
+
+    - name: Add firewall Rules (open ports 80 and 8080)
+      shell:  firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+    - name: Add firewall Rules (open ports 80 and 8080)
+      shell:  firewall-cmd --zone=public --add-port=8080/tcp --permanent
+    - name: Reload Firewall Rules
+      shell: firewall-cmd --reload
+
+
+  roles:
+    - emacsRH7
+#   - epel7
+#   - python2RH7
+#   - python3RH7
+#   - devtools7
+#   - odbc7
+#   - postgresql-client7
+#   - sasRH7
+#   - stattransfer14
+
+  post_tasks:
+#   - name: register mime types
+#     shell: update-mime-database /usr/share/mime/packages/
+
+#   - name: remove RHEL7.5
+#     command:  "/usr/bin/subscription-manager remove --all"
+#   - name: unregister RHEL7.5
+#     command:  "/usr/bin/subscription-manager unregister"
+#   - name: clean RHEL7.5
+#     command:  "/usr/bin/subscription-manager clean"7
