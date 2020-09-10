@@ -72,9 +72,9 @@ Vagrant.configure("2") do |config|
   config.vm.define "matlabRH7" do |matlabRH7|
     matlabRH7.vm.box = "clouddood/RH7.5_baserepo"
     matlabRH7.vm.hostname = "matlabRH7"
-    matlabRH7.vm.network "private_network", ip: "192.168.60.157"
-#   matlabRH7.vm.network "private_network", ip: "192.168.60.157", nic_type: "virtio"
-    matlabRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.157 matlabRH7.local matlabRH7' >> /etc/hosts"
+    matlabRH7.vm.network "private_network", ip: "192.168.60.159"
+#   matlabRH7.vm.network "private_network", ip: "192.168.60.159", nic_type: "virtio"
+    matlabRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.159 matlabRH7.local matlabRH7' >> /etc/hosts"
 
 ##  Use Main / Update in Vagrant provision command ### $vagrant provision --provision-with shell/main/update
 
