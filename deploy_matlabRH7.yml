@@ -1,5 +1,6 @@
 - hosts: research_environment
   vars:
+    install_matlab: true
     custom_repo: true
     deploy_iptables: true
     envir: PROD
