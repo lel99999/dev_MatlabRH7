@@ -161,7 +161,8 @@
     - matlab
 
 - name: restart matlab license manager
-  shell: su deploy -c "./lmstart"
+  shell: su deploy -c "{{ matlab_install_directory }}/{{ matlab_version }}/etc/lmstart"
+# shell: su deploy -c "./lmstart"
   args: 
     chdir: "{{ matlab_install_directory }}/{{ matlab_version }}/etc"
   tags:
