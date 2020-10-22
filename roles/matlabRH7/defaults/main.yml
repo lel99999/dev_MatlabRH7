@@ -12,6 +12,8 @@ install_matlab:             False
 matlab_iso1:                R2018b_glnxa64_dvd1.iso
 matlab_iso2:                R2018b_glnxa64_dvd2.iso
 
+matlab_nnu_assetinfo:	     40725165
+matlab_concurrent_assetinfo:	720353
 matlab_installation_key:     installkey
 matlab_outputfile:           /usr/local/MATLAB/R2018b/output/mathworks.log
 matlab_license_location:     /usr/local/MATLAB/R2018b/licenses/license.lic
