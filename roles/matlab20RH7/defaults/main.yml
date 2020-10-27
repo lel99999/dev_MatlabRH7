@@ -1,7 +1,7 @@
 ---
 matlab_install_directory:   /usr/local/MATLAB
 # matlab_install_files:       /usr/local/MATLAB_install
-matlab_version:             R2018b
+matlab_version:             R2020b
 matlab_iso1_mount:          iso1
 matlab_iso2_mount:          iso2
 matlab_license_folder:      licenses
@@ -11,6 +11,7 @@ install_matlab:             False
 
 matlab_iso1:                R2018b_glnxa64_dvd1.iso
 matlab_iso2:                R2018b_glnxa64_dvd2.iso
+matlab20_install:                matlab_R2020b_glnxa64.zip
 
 matlab_nnu_assetinfo:                40725165
 matlab_concurrent_assetinfo:                720353
