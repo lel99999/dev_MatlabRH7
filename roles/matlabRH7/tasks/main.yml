@@ -41,8 +41,9 @@
     group: root
     mode: a+rx
   with_items:
-    - "{{ matlab_iso1_mount }}"
-    - "{{ matlab_iso2_mount }}"
+#   - "{{ matlab_iso1_mount }}"
+#   - "{{ matlab_iso2_mount }}"
+    - "{{ matlab20_mount }}"
     - "{{ matlab_combined_mount }}"
     - "{{ matlab_license_folder }}"
     - "{{ matlab_output_location }}"
@@ -80,8 +81,9 @@
 - name: copy mount info into install folder
   command: "cp -r {{ item }} {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
   with_items:
-    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso1_mount }}/."
-    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso2_mount }}/."
+#   - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso1_mount }}/."
+#   - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso2_mount }}/."
+    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab20_mount }}/."
   when: 
     install_matlab
   tags:
