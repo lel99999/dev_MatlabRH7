@@ -41,8 +41,9 @@
     group: root
     mode: a+rx
   with_items:
-    - "{{ matlab_iso1_mount }}"
-    - "{{ matlab_iso2_mount }}"
+#   - "{{ matlab_iso1_mount }}"
+#   - "{{ matlab_iso2_mount }}"
+    - "{{ matlab20_mount }}"
     - "{{ matlab_combined_mount }}"
     - "{{ matlab_license_folder }}"
     - "{{ matlab_output_location }}"
