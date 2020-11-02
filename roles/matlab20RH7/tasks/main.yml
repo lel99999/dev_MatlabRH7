@@ -41,9 +41,9 @@
     group: root
     mode: a+rx
   with_items:
-#   - "{{ matlab_iso1_mount }}"
-#   - "{{ matlab_iso2_mount }}"
-    - "{{ matlab20_mount }}"
+    - "{{ matlab_iso1_mount }}"
+    - "{{ matlab_iso2_mount }}"
+#   - "{{ matlab20_mount }}"
     - "{{ matlab_combined_mount }}"
     - "{{ matlab_license_folder }}"
     - "{{ matlab_output_location }}"
@@ -52,41 +52,48 @@
   tags:
     - matlab
 
-- name: Mount matlab iso1 
-  mount:  
-    name: "{{ item.dest }}/{{ matlab_version }}/{{ matlab_iso1_mount }}"  
-    src: "{{ item.src }}/{{ matlab_iso1 }}" 
-    fstype: iso9660 
-    opts: loop  
-    state: mounted  
-  with_items: "{{ mountinfo }}" 
-  when:   
-    mountinfo is defined and install_matlab 
-  tags: 
-    - matlab  
+#- name: Mount matlab iso1 
+#  mount:  
+#    name: "{{ item.dest }}/{{ matlab_version }}/{{ matlab_iso1_mount }}"  
+#    src: "{{ item.src }}/{{ matlab_iso1 }}" 
+#    fstype: iso9660 
+#    opts: loop  
+#    state: mounted  
+#  with_items: "{{ mountinfo }}" 
+#  when:   
+#    mountinfo is defined and install_matlab 
+#  tags: 
+#    - matlab  
 
-- name: Mount matlab iso2  
-  mount:  
-    name: "{{ item.dest }}/{{ matlab_version }}/{{ matlab_iso2_mount }}"  
-    src: "{{ item.src }}/{{ matlab_iso2 }}" 
-    fstype: iso9660 
-    opts: loop  
-    state: mounted  
-  with_items: "{{ mountinfo }}" 
-  when:   
-    mountinfo is defined and install_matlab 
-  tags: 
-    - matlab
+#- name: Mount matlab iso2  
+#  mount:  
+#    name: "{{ item.dest }}/{{ matlab_version }}/{{ matlab_iso2_mount }}"  
+#    src: "{{ item.src }}/{{ matlab_iso2 }}" 
+#    fstype: iso9660 
+#    opts: loop  
+#    state: mounted  
+#  with_items: "{{ mountinfo }}" 
+#  when:   
+#    mountinfo is defined and install_matlab 
+# tags: 
+#   - matlab
 
-- name: copy mount info into install folder
-  command: "cp -r {{ item }} {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
-  with_items:
-    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso1_mount }}/."
-    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso2_mount }}/."
-  when: 
+- name: Unzip Matlab20 zip into install folder
+  command: "unzip {{ matlab20_install }} -d {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
+  when:
     install_matlab
   tags:
     - matlab
+
+#- name: copy mount info into install folder
+#  command: "cp -r {{ item }} {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
+#  with_items:
+#    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso1_mount }}/."
+#    - "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_iso2_mount }}/."
+#  when: 
+#    install_matlab
+#  tags:
+#    - matlab
 
 - name: Copy the matlab license
   copy:
