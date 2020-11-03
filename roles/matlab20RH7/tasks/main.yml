@@ -6,7 +6,7 @@
     excludes: "{{ matlab_iso1_mount }},{{ matlab_iso2_mount }}"
   register: delete_find_result
   when: 
-    install_matlab
+    install_matlab and reinstall
   tags: 
     - matlab
 
@@ -17,7 +17,7 @@
   with_items:
     - "{{ delete_find_result.files }}"
   when:
-    install_matlab
+    install_matlab and reinstall
   tags:
     - matlab
 
