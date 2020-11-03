@@ -18,9 +18,9 @@ matlab_nnu_assetinfo:                40725165
 matlab_concurrent_assetinfo:                720353
 
 matlab_installation_key:     installkey
-matlab_outputfile:           /usr/local/MATLAB/R2018b/output/mathworks.log
-matlab_license_location:     /usr/local/MATLAB/R2018b/licenses/license.lic
-matlab_network_license_file: /usr/local/MATLAB/R2018b/licenses/network.lic
+matlab_outputfile:           /usr/local/MATLAB/R2020b/output/mathworks.log
+matlab_license_location:     /usr/local/MATLAB/R2020b/licenses/license.lic
+matlab_network_license_file: /usr/local/MATLAB/R2020b/licenses/network.lic
 matlab_license_file:         proprietary_license_info
 matlab_license_server:       server
 matlab_license_daemon:       daemon
