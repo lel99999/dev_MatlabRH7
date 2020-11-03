@@ -141,9 +141,10 @@
 - name: run the matlab install
   become: yes
   become_method: sudo
-  shell: "./install -inputFile {{ matlab_install_directory }}/{{ matlab_version }}/installer_input.txt -mode silent"
-  args:
-    chdir: "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
+  shell: "{{ matlab_install_directory }}/{{ matlab_version }}/installer/install -inputFile {{ matlab_install_directory }}/{{ matlab_version }}/installer_input.txt -mode silent"
+# shell: "./install -inputFile {{ matlab_install_directory }}/{{ matlab_version }}/installer_input.txt -mode silent"
+# args:
+#   chdir: "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
   when: 
     install_matlab
   tags:
