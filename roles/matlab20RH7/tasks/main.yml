@@ -78,12 +78,12 @@
 # tags: 
 #   - matlab
 
-- name: Unzip Matlab20 zip into install folder
-  command: "unzip {{ matlab20_install }} -d {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
-  when:
-    install_matlab
-  tags:
-    - matlab
+#- name: Unzip Matlab20 zip into install folder
+#  command: "unzip {{ matlab20_install }} -d {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
+#  when:
+#    install_matlab
+#  tags:
+#    - matlab
 
 #- name: copy mount info into install folder
 #  command: "cp -r {{ item }} {{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
@@ -139,6 +139,8 @@
     - matlab
 
 - name: run the matlab install
+  become: yes
+  become_method: sudo
   shell: "./install -inputFile {{ matlab_install_directory }}/{{ matlab_version }}/installer_input.txt -mode silent"
   args:
     chdir: "{{ matlab_install_directory }}/{{ matlab_version }}/{{ matlab_combined_mount }}"
