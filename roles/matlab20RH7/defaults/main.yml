@@ -17,7 +17,7 @@ matlab20_install:                /home/dtwork/applications/matlab/matlab_R2020b_
 matlab_nnu_assetinfo:                40725165
 matlab_concurrent_assetinfo:                720353
 
-matlab_installation_key:     installkey
+matlab_installation_key:     10124-28298-60813-33509-25528-41771
 matlab_outputfile:           /usr/local/MATLAB/R2020b/output/mathworks.log
 matlab_license_location:     /usr/local/MATLAB/R2020b/licenses/license.lic
 matlab_network_license_file: /usr/local/MATLAB/R2020b/licenses/network.lic
