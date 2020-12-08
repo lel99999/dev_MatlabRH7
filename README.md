@@ -11,6 +11,10 @@ DAEMON MLM {$MATLAB}/<path>/MLM
 ```
 {$MATLAB}/etc/glnxa64/lmgrd -c "/<path>/license.lic" -l "/<path>/logfile.log"
 ``` 
+#### Ensure licensed users are added 
+```
+{$MATLAB|/etc/<file>.opt
+```
 
 #### Add Lic Mgr
 Download and add to <MATLAB_Install_Dir>/etc/glnxa64 <br/>
