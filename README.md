@@ -1,7 +1,7 @@
 # dev_MatlabRH7
 Matlab development/update for RHEL 7.x
 
-#### Add Specific User License Info
+#### Add Specific User License Info for Single, Network with different mlm files
 ADD following lines right before INCREMENT: <br/>
 ```
 SERVER <hostname> <hostid> 27000
