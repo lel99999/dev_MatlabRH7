@@ -9,7 +9,7 @@ DAEMON MLM {$MATLAB}/<path>/MLM
 ```
 #### Test License Mgr and License File with Log Output
 ```
-{$MATLAB}/etc/glnxa64/lmgrd -c "/<path>/license.lic" -l "/<path>/logfile.log"
+{$MATLAB}/etc/glnxa64/lmgrd -c "/<path>/etc/license.lic" -l "/<path>/logfile.log"
 ``` 
 #### Ensure licensed users are added 
 ```
