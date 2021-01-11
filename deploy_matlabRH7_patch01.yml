@@ -71,7 +71,7 @@
 #   - chromeRH7
 #   - emacsRH7
 #   - epel7
-    - python2RH7
+#   - python2RH7
     - python3RH7
     - devtools7
     - odbc7
