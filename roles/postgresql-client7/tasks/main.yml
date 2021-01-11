@@ -26,7 +26,7 @@
     - rh-postgresql94-postgresql-contrib
 
 - name: Install postgres 9.6 repo
-  yum_repository::
+  yum_repository:
     name: postgresql9.6
     description: postgresql 9.6 repo
     baseurl: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.9-x86_64/
