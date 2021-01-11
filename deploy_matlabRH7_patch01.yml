@@ -65,7 +65,7 @@
 #     shell:  yum groupinstall "Development Tools" -y
 
   roles:
-    - stataRH7
+#   - stataRH7
     - r_RH7
 #   - matlabRH7
 #   - chromeRH7
