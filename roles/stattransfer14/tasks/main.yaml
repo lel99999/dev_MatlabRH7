@@ -43,7 +43,8 @@
     - stattransfer
 
 - name: Change owner  permissions
-  shell: chown -R root:root {{stattransfer_local_bin_directory}}/stlinux64_install
+  shell: chown -R root:root /usr/local/StatTransfer14/stlinux64_install
+# shell: chown -R root:root {{stattransfer_local_bin_directory}}/stlinux64_install
 # file:
 #   dest: {{stattransfer_local_bin_directory}}/stlinux64_install_a
 #   owner: root
@@ -52,15 +53,16 @@
 #   recurse: yes
 
 - name: Change folder/file permissions
-  shell: chmod +x {{stattransfer_local_bin_directory}}/stlinux64_install
+  shell: chmod +x /usr/local/StatTransfer14/stlinux64_install
+# shell: chmod +x {{stattransfer_local_bin_directory}}/stlinux64_install
 
-- name: Copy over the install bin
-  copy:
-    src: "{{stattransfer_local_bin_directory}}/stlinux64_install"
-    dest: "{{stattransfer_install_directory}}/stlinux64_install"
-  when: custom_repo
-  tags:
-    - stattransfer
+# name: Copy over the install bin
+# copy:
+#   src: "{{stattransfer_local_bin_directory}}/stlinux64_install"
+#   dest: "{{stattransfer_install_directory}}/stlinux64_install"
+# when: custom_repo
+# tags:
+#   - stattransfer
 
 - name: Set the install bin to be executable
   file:
