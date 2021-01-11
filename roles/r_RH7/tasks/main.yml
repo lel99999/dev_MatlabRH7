@@ -62,8 +62,8 @@
   register: r_dependencies
   tags:
     - r
- - debug:
-     msg: "R dependencies {{ r_dependencies }}"
+- debug:
+    msg: "R dependencies {{ r_dependencies }}"
 
 - name: Ensure epel7 latest is installed
   yum:
