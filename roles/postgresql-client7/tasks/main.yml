@@ -1,15 +1,29 @@
 ---
+<<<<<<< HEAD
 #- name: Make sure latest EPEL repo is installed
 #  yum:
 #    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 #    state: latest
 #    disable_gpg_check: yes
+=======
+- name: Make sure latest EPEL repo is installed
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+#   state: latest
+    disable_gpg_check: yes
+>>>>>>> e679d685ff4ff6c7cdaa05d19c24fe592c03f411
 
 #- name: Install postgres repository for 9.4
 #  yum:
 #    name: "(( postgresq94_repository_url }}"
 #    state: present
 #    disable_gpg_check: yes
+
+- name: Add postgres 94 repo for RHEL 7
+  yum_repository:
+    name: postgres94
+    description: postgresql 94 repo for RHEL 7
+    baseurl: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/
 
 - name: Install postgres 9.4 packages on RHEL 7
   yum:
@@ -98,6 +112,7 @@
   tags:
     - postgres_client
 
+<<<<<<< HEAD
 ## Repo/Packages for 9.4 Not Available anymore
 #- name: Add 94 yum repo
 #  yum_repository:
@@ -114,6 +129,23 @@
 #  with_items: "{{ postgres_packages }}"
 #  tags:
 #    - postgres_client
+=======
+#- name: Add Postgres 94 repo
+# yum_repository:
+#   name: postgres94
+#   description: postgresql 94 repo for RHEL 7
+#   baseurl: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/
+
+#- name: Install postgres packages
+# yum:
+#   name: "{{ item }}"
+#   state: present
+#   state: latest
+#   disable_gpg_check: yes
+# with_items: "{{ postgres_packages }}"
+# tags:
+#   - postgres_client
+>>>>>>> e679d685ff4ff6c7cdaa05d19c24fe592c03f411
 
 - name: Install gis postgres packages
   yum:
@@ -146,6 +178,7 @@
     path: /usr/include/pgsql
   register: lpgsqllib
 
+<<<<<<< HEAD
 # Error for /usr/pgsql-9.4/include
 #- name: Ensure other libraries can see library files
 #  file:
@@ -155,6 +188,17 @@
 #  tags:
 #    - postgres_client
 #  when: lpgsqllib.stat.exists == false
+=======
+- name: Ensure other libraries can see library files
+  file:
+    src: "{{ postgres_install_dir }}/lib"
+    dest: /usr/lib/pgsql
+    state: link
+    force: yes
+  tags:
+    - postgres_client
+  when: lpgsqllib.stat.exists == false
+>>>>>>> e679d685ff4ff6c7cdaa05d19c24fe592c03f411
 
 - name: Add psql bin directory to path
   template:
